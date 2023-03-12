@@ -1,0 +1,1 @@
+DROP INDEX fk_test_table_agent_id_date_idx;

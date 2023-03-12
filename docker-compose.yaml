@@ -1,0 +1,64 @@
+version: '3.3'
+services:
+  db1:
+    image: mysql:5.7
+    container_name: testdb_57
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db1'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '33061:3306'
+    volumes:
+      - ./db/mysql1:/var/lib/mysql
+
+  db2:
+    image: mysql:5.5
+    container_name: testdb_55
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db1'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '33062:3307'
+    volumes:
+      - ./db/mysql2:/var/lib/mysql
+
+  db1pg:
+    image: postgres:14.1-alpine
+    container_name: testdb_pg14
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - ./db/pg1:/var/lib/postgresql/data
+
+  db2pg:
+    image: postgres:10-alpine
+    container_name: testdb_pg10
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5433:5432'
+    volumes: 
+      - ./db/pg2:/var/lib/postgresql/data          
+
+  adminer:
+    image: adminer
+    container_name: testdb_adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+volumes:
+  mysql1:
+  mysql2:

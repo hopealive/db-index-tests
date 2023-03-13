@@ -36,7 +36,7 @@ printf "Execution time mysql 5.5: %.6f seconds \n" $dur >> $LOG_FILE
 start=$(date +%s.%N)
 docker exec testdb_57 $mysqlConnString "$mysqlTestIdQuery"
 dur=$(echo "$(date +%s.%N) - $start" | bc)
-printf "Execution time mysql 5.7, sort By ID: %.6f seconds \n" $dur >> $LOG_FILE
+printf "Execution time mysql 5.5, sort By ID: %.6f seconds \n" $dur >> $LOG_FILE
 
 
 ### Postgres
@@ -73,10 +73,10 @@ start=$(date +%s.%N)
 docker exec $dbHost $pgConnString "$pgTestQuery"
 docker exec testdb_pg14 psql -U postgres -d postgres -c "SELECT * FROM test_table"
 dur=$(echo "$(date +%s.%N) - $start" | bc)
-printf "Execution time Postgres 14: %.6f seconds \n" $dur >> $LOG_FILE
+printf "Execution time Postgres 10: %.6f seconds \n" $dur >> $LOG_FILE
 
 
 start=$(date +%s.%N)
 docker exec $dbHost $pgConnString "$pgTestIdQuery"
 dur=$(echo "$(date +%s.%N) - $start" | bc)
-printf "Execution time Postgres 14, sort By ID: %.6f seconds \n" $dur >> $LOG_FILE
+printf "Execution time Postgres 10, sort By ID: %.6f seconds \n" $dur >> $LOG_FILE

@@ -1,13 +1,14 @@
 DROP TABLE IF EXISTS test_table;
-CREATE TYPE stateEnum AS ENUM('wip','preckecked');
+CREATE TYPE stateEnum AS ENUM('wip', 'preckecked');
 CREATE TABLE test_table (
+  id serial NOT NULL,
   agent_id INTEGER NOT NULL,
   pack INTEGER NOT NULL,
   state stateEnum NOT NULL,
   date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   last_changed timestamp NULL DEFAULT NULL,
 
-  PRIMARY KEY (agent_id, pack)
+  PRIMARY KEY (id)
 );
 
 

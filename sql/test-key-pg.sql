@@ -1,1 +1,0 @@
-CREATE INDEX fk_test_table_agent_id_date_idx ON test_table (agent_id, date desc);
